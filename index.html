@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>F1</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: 'Lato', sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        text-align: center;
+
+    }
+
+    .styled-table thead tr {
+        background-color: #FF1801;
+        color: #ffffff;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table tbody tr {
+        border-top: thin solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: thin solid #FF1801;
+    }
+
+    .dia {
+        background-color: #FF1801;
+        border-top: thin solid;
+        color: #ffffff;
+    }
+
+    .carrera {
+        background-color: #FF1801;
+        border-bottom: thin solid;
+        color: #ffffff;
+    }
+</style>
+
+<body>
+
+    <table class="styled-table"
+        id="myTable">
+        <thead>
+            <tr>
+                <td class="carrera"
+                    align="center"
+                    colspan="2">
+                    <span id="nombre">
+                        BAHREIN 2022 18-20 MARZO
+                    </span>
+            </tr>
+            <tr>
+                <td><strong>Sesión</strong></td>
+                <td><strong>Hora</strong></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="dia"
+                    align="center"
+                    colspan="2">
+                    <span>
+                        VIERNES
+                    </span>
+            </tr>
+            <tr>
+                <td>FP1</td>
+                <td><span>13:00</span></td>
+            </tr>
+            <tr>
+                <td>FP2</td>
+                <td><span>16:00</span></td>
+            </tr>
+            <tr>
+                <td class="dia"
+                    align="center"
+                    colspan="2">
+                    <span>
+                        SÁBADO
+                    </span>
+            </tr>
+            <tr>
+                <td>FP3</td>
+                <td><span>13:00</span></td>
+            </tr>
+            <tr>
+                <td>CLASIFICACIÓN</td>
+                <td><span>16:00</span></td>
+            </tr>
+
+            <tr>
+                <td class="dia"
+                    align="center"
+                    colspan="2">
+                    <span>
+                        DOMINGO
+                    </span>
+            </tr>
+            <tr>
+                <td>CARRERA</td>
+                <td><span>16:00</span></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <button id="convert">
+        Descargar foto
+    </button>
+
+    <div id="result">
+        <!-- Result will appear be here -->
+    </div>
+
+
+    <script type="text/javascript"
+        src="https://github.com/niklasvh/html2canvas/releases/download/0.5.0-alpha1/html2canvas.js"></script>
+    <script>
+        //convert table to image
+        function convertToImage() {
+            var resultDiv = document.getElementById("result");
+            html2canvas(document.getElementById("myTable"), {
+                onrendered: function (canvas) {
+                    var nombre = document.getElementById('nombre').innerHTML.trim();
+                    var img = canvas.toDataURL("image/png");
+                    result.innerHTML = '<a id="descargar" download="' + nombre + '.jpeg" href="' + img + '">' + nombre + '</a>';
+                    document.getElementById("descargar").click();
+                    document.getElementById("descargar").remove();
+                }
+            });
+        }
+        //click event
+        var convertBtn = document.getElementById("convert");
+        convertBtn.addEventListener('click', convertToImage);
+    </script>
+</body>
+
+</html>
